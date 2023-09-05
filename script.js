@@ -12,7 +12,6 @@ class ProductManager {
             return "ya existe el producto"
         }
 
-
         if ((!title) || (!description) || (!price) || (!thumbnail) || (!code) || (!stock)) {
             return "falta información por enviar"
         }
