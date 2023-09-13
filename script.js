@@ -43,6 +43,10 @@ class ProductManager {
     }
 }
 
+
+
+
+
 //------------------ TESTEOS-------------------//
 // const k = new ProductManager()
 // console.log('getproducts', k.getProducts())
