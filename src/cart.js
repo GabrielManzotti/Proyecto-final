@@ -35,10 +35,7 @@ class CartsManager {
                 return newCart
             }
             else {
-                console.log("entra en else");
-                console.log("carts.lenght en ELSE??", carts.length)
                 id = carts[carts.length - 1].id + 1
-                console.log("ID creado", id)
                 products = []
                 const newCart = { id, products }
                 carts.push(newCart)
@@ -72,18 +69,14 @@ class CartsManager {
             if (!cart) {
                 return "no cart"
             } else {
-                console.log("idCart", idCart);
-                const foundProductIndex = cart.products.findIndex(e => e.id === +idProduct)
-                console.log("found!", foundProductIndex)
+                const foundProductIndex = cart.products.findIndex(e => e.product === +idProduct)
                 if (foundProductIndex === -1) {
                     cart.products.push({
-                        id: +idProduct,
+                        product: +idProduct,
                         quantity: 1,
                     })
-                    console.log(cart);;
                 } else {
                     cart.products[foundProductIndex].quantity += 1;
-                    console.log("espero que salga!", cart);
                 }
                 const foundCartIndex = carts.findIndex((cart) => cart.id === +idCart);
                 carts[foundCartIndex] = cart;

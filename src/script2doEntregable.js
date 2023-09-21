@@ -36,7 +36,6 @@ class ProductManager {
                 return "ya existe el producto"
             }
             if (!products.length) {
-                log("iF")
                 id = 1
                 const newProduct = { id, ...bodyObj }
                 products.push(newProduct)
@@ -44,7 +43,6 @@ class ProductManager {
                 return newProduct
             }
             else {
-                console.log("else", id);
                 id = products[products.length - 1].id + 1
                 const newProduct = { id, ...bodyObj }
                 products.push(newProduct)
@@ -77,7 +75,7 @@ class ProductManager {
             else {
                 const indiceElemento = products.findIndex(e => e.id === id)
                 let nuevoProducts = [...products]
-                nuevoProducts[indiceElemento] = { ...nuevoProducts[indiceElemento], title: actualizacion.title, description: actualizacion.description, price: actualizacion.price, thumbnail: actualizacion.thumbnail, code: validaCode.code, stock: actualizacion.stock }
+                nuevoProducts[indiceElemento] = { ...nuevoProducts[indiceElemento], title: actualizacion.title, description: actualizacion.description, price: actualizacion.price, thumbnail: actualizacion.thumbnail, code: validaCode.code, stock: actualizacion.stock, status: actualizacion.status, category: actualizacion.category }
                 products = nuevoProducts
                 await fs.promises.writeFile(this.path, JSON.stringify(products))
                 return 'producto actualizado'

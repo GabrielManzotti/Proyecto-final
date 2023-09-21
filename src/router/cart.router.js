@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { cartManager } from '../cart.js'
 const router = Router()
 
-router.get('/cart', async (req, res) => {
+router.get('/', async (req, res) => {
     const cart = await cartManager.getCarts()
     try {
         if (cart === "no info") {
@@ -15,31 +15,31 @@ router.get('/cart', async (req, res) => {
     }
 })
 
-router.post('/cart', async (req, res) => {
+router.post('/', async (req, res) => {
     const cart = await cartManager.createCart()
     try {
-        res.status(200).json({ message: "carrito creado", cart })
+        res.status(200).json({ message: "cart created", cart })
     } catch (error) {
         error
     }
 })
 
-router.get('/cart/:cid', async (req, res) => {
+router.get('/:cid', async (req, res) => {
     const { cid } = req.params
     try {
         const cart = await cartManager.getCartByID(+cid)
         if (cart === "no cart") {
-            res.status(400).json({ message: "carrito no encontrado" })
+            res.status(400).json({ message: "cart no found" })
         }
         else {
-            res.status(200).json({ message: "carrito encontrado", cart })
+            res.status(200).json({ message: "cart founded", cart })
         }
     } catch (error) {
         error
     }
 })
 
-router.post('/cart/:cid/product/:pid', async (req, res) => {
+router.post('/:cid/product/:pid', async (req, res) => {
 
     let cartId = req.params.cid
     let productId = req.params.pid

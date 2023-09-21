@@ -3,7 +3,7 @@ import { productManager } from '../script2doEntregable.js'
 const router = Router()
 
 
-router.get('/products', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const products = await productManager.getProducts(req.query)
         if (!products) {
@@ -17,7 +17,7 @@ router.get('/products', async (req, res) => {
 })
 
 
-router.get('/products/:pid', async (req, res) => {
+router.get('/:pid', async (req, res) => {
     const { pid } = req.params
     try {
         const product = await productManager.getProductsById(+pid)
@@ -32,7 +32,7 @@ router.get('/products/:pid', async (req, res) => {
     }
 })
 
-router.post('/products', async (req, res) => {
+router.post('/', async (req, res) => {
     const { title, description, code, price, status, stock, category, thumbnail, } = req.body
     if (!title || !description || !price || !code || !stock || status || category) {
         return res.status(200).json({ message: 'Some data is missing' })
@@ -46,7 +46,7 @@ router.post('/products', async (req, res) => {
 }
 )
 
-router.post('/products/delete/:pid', async (req, res) => {
+router.post('/delete/:pid', async (req, res) => {
     const { pid } = req.params
     try {
         const deleteProduct = await productManager.deleteProductByID(+pid)
@@ -62,9 +62,9 @@ router.post('/products/delete/:pid', async (req, res) => {
 }
 )
 
-router.post('/products/update/:pid', async (req, res) => {
+router.post('/update/:pid', async (req, res) => {
     const { pid } = req.params
-    const { title, description, price, thumbnail, stock } = req.body
+    const { title, description, price, thumbnail, stock, status, category } = req.body
     const updateProduct = await productManager.updateProductByID(+pid, req.body)
     try {
         if (updateProduct === "no existe el producto") {
