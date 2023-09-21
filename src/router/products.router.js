@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { productManager } from '../script2doEntregable.js'
+import { productManager } from '../entities/script2doEntregable.js'
 const router = Router()
 
 
@@ -34,7 +34,8 @@ router.get('/:pid', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const { title, description, code, price, status, stock, category, thumbnail, } = req.body
-    if (!title || !description || !price || !code || !stock || status || category) {
+    if (!title || !description || !price || !code || !stock || !status || !category) {
+        console.log("entra een if", req.body)
         return res.status(200).json({ message: 'Some data is missing' })
     }
     try {

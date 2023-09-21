@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { cartManager } from '../cart.js'
+import { cartManager } from '../entities/cart.js'
 const router = Router()
 
 router.get('/', async (req, res) => {
@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         if (cart === "no info") {
             res.status(400).json({ message: "no info" })
         } else {
-            res.status(200).json({ message: cart })
+            res.status(200).json({ message: "carts", cart })
         }
     } catch (error) {
         error
